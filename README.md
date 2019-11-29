@@ -1,3 +1,26 @@
 # Irekua Development Tools
 
-CLI tool to manage irekua and selia app development.
+CLI tools to manage irekua and selia app development.
+
+
+## Git tools
+
+* Download
+
+* Update
+
+* Check
+
+## Configuration tools
+
+* Show
+
+* Set
+
+### Development tools
+
+* Install
+
+* Start
+
+* Shell

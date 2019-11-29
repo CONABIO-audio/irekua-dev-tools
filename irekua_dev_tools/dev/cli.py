@@ -8,6 +8,7 @@ from .install import update_app
 from .install import is_installed
 from .install import run_django_server
 from .install import run_app_shell
+from .install import run_manage
 from .watch import observe_app_dependencies
 
 
@@ -114,3 +115,14 @@ def start(ctx, name, install, update, port):
     for observer in observers:
         observer.join()
     django_thread.join()
+
+
+@click.command()
+@click.pass_context
+@click.argument('name', type=click.Choice(REPOSITORY_INFO.keys()))
+@click.argument('command', nargs=1)
+@click.argument('extra', nargs=1, required=False)
+def manage(ctx, name, command, extra):
+    target = ctx.obj['target']
+    venvs_dir = ctx.obj['venvs_dir']
+    run_manage(target, name, command, extra, venvs_dir=venvs_dir)

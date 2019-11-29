@@ -14,6 +14,7 @@ REPOSITORY_INFO = {
             'irekua-dev-settings',
             'irekua-database',
             'irekua-rest-api',
+            'selia-forms',
             'selia-templates',
             'selia-thumbnails',
         ],
@@ -55,6 +56,7 @@ REPOSITORY_INFO = {
             'irekua-dev-settings',
             'irekua-database',
             'irekua-rest-api',
+            'selia-forms',
             'selia-templates',
             'selia-visualizers'
         ],
@@ -74,6 +76,7 @@ REPOSITORY_INFO = {
         'git': 'git@github.com:CONABIO-audio/selia-about.git',
         'dependencies': [
             'irekua-dev-settings',
+            'selia-forms',
             'selia-templates'
         ],
     },

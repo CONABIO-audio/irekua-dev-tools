@@ -1,7 +1,6 @@
 import click
 
 from irekua_dev_tools.utils import load_config
-from irekua_dev_tools.utils import clear_target_directory
 from irekua_dev_tools.utils import get_working_directory
 from irekua_dev_tools.utils import load_environment_variables
 
@@ -9,6 +8,9 @@ from . import git
 from . import dev
 from . import config
 from . import db
+
+from .extra import clean
+from .extra import manage
 
 
 @click.group()
@@ -28,15 +30,9 @@ def cli(ctx, config_file, target, default_config):
     ctx.obj['target'] = target
 
 
-@cli.command()
-@click.pass_context
-@click.option('--silent', '-s', is_flag=True)
-def clean(ctx, silent):
-    target = ctx.obj['target']
-    clear_target_directory(target, silent=silent)
-
-
 cli.add_command(dev.cli)
 cli.add_command(git.cli)
 cli.add_command(config.cli)
 cli.add_command(db.cli)
+cli.add_command(clean)
+cli.add_command(manage)

@@ -89,7 +89,6 @@ def install_dependency(
 
 
 def create_requirements(target, name, venvs_dir=None):
-    app_dir = os.path.join(target, name)
     arguments = ['freeze']
     output = run_pip(target, name, arguments, venvs_dir=venvs_dir, capture=True)
 
@@ -97,7 +96,7 @@ def create_requirements(target, name, venvs_dir=None):
     file_path = os.path.join(target, name, 'requirements.txt')
     with open(file_path, 'w') as rfile:
         for requirement in requirements:
-            if name not in requirements:
+            if name not in requirement:
                 rfile.write(requirement + '\n')
 
 
@@ -126,4 +125,18 @@ def run_app_shell(target, name, venvs_dir=None):
         return
 
     arguments = [module_name, 'shell']
+    run_python(target, name, arguments, venvs_dir=venvs_dir)
+
+
+def run_manage(target, name, command, extra, venvs_dir=None):
+    module_name = os.path.join(target, name, 'manage.py')
+
+    if not os.path.exists(module_name):
+        message = 'App {} is not a django app'.format(name)
+        click.secho(message, fg='red')
+        return
+
+    arguments = [module_name, command]
+    if extra:
+        arguments.append(extra)
     run_python(target, name, arguments, venvs_dir=venvs_dir)

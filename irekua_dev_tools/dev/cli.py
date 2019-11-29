@@ -7,6 +7,7 @@ from .install import install_app
 from .install import update_app
 from .install import is_installed
 from .install import run_django_server
+from .install import run_app_shell
 from .watch import observe_app_dependencies
 
 
@@ -22,18 +23,18 @@ def cli(ctx, venvs_dir):
 @cli.command()
 @click.pass_context
 @click.argument('name', type=click.Choice(REPOSITORY_INFO.keys()))
-@click.option('--install', '-i', is_flag=True)
-def install(ctx, name, install):
+@click.option('--reinstall', '-r', is_flag=True)
+def install(ctx, name, reinstall):
     target = ctx.obj['target']
     venvs_dir = ctx.obj['venvs_dir']
-
-    install_app(target, name, venvs_dir=venvs_dir)
+    install_app(target, name, venvs_dir=venvs_dir, reinstall=reinstall)
 
 
 @cli.command()
 @click.pass_context
 @click.argument('name', type=click.Choice(REPOSITORY_INFO.keys()))
-def update(ctx, name):
+@click.option('--install', '-i', is_flag=True)
+def update(ctx, name, install):
     target = ctx.obj['target']
     venvs_dir = ctx.obj['venvs_dir']
 
@@ -52,6 +53,26 @@ def update(ctx, name):
     update_app(target, name, venvs_dir=venvs_dir)
     click.secho('App {} succesfully updated'.format(name), fg='green')
 
+@cli.command()
+@click.pass_context
+@click.argument('name', type=click.Choice(REPOSITORY_INFO.keys()))
+@click.option('--install', '-i', is_flag=True)
+def shell(ctx, name, install):
+    target = ctx.obj['target']
+    venvs_dir = ctx.obj['venvs_dir']
+
+    if not is_installed(target, name, venvs_dir=venvs_dir):
+        if not install:
+            message = (
+                'App {name} is not installed. Please run:  irekua dev install '
+                '{name}'.format(name=name))
+            click.secho(message, fg='red')
+            return
+
+        install_app(target, name, venvs_dir=venvs_dir)
+
+    run_app_shell(target, name, venvs_dir=venvs_dir)
+
 
 @cli.command()
 @click.pass_context
@@ -66,15 +87,15 @@ def start(ctx, name, install, update, port):
     if not is_installed(target, name, venvs_dir=venvs_dir):
         if not install:
             message = (
-                    'App {name} is not installed. Please run irekua dev install '
-                    ' {name}'.format(name=name))
+                'App {name} is not installed. Please run irekua dev install '
+                ' {name}'.format(name=name))
             click.secho(message, fg='red')
             return
 
         install_app(target, name, venvs_dir=venvs_dir)
 
     if update:
-        update_app(target, name, venvs_dir=venvs_dir, output=False)
+        update_app(target, name, venvs_dir=venvs_dir, stdout=False)
         click.secho('App {} succesfully updated'.format(name), fg='green')
 
     django_thread = run_django_server(

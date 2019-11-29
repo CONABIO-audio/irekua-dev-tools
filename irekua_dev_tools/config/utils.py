@@ -50,7 +50,12 @@ def update_config(
         working_directory=None,
         config_file=None,
         origin=None,
-        branch=None):
+        branch=None,
+        db_user=None,
+        db_host=None,
+        db_port=None,
+        db_name=None,
+        db_password=None):
 
     config = load_config(path=None, aux_config=False)
 
@@ -66,10 +71,23 @@ def update_config(
     if branch:
         config['git']['branch'] = branch
 
+    if db_user:
+        config['db']['user'] = db_user
+
+    if db_host:
+        config['db']['host'] = db_host
+
+    if db_port:
+        config['db']['port'] = db_port
+
+    if db_name:
+        config['db']['name'] = db_name
+
+    if db_password:
+        config['db']['password'] = db_password
+
     path = os.path.join(BASE_DIR, 'settings.ini')
     with open(path, 'w') as config_file:
         config.write(config_file)
 
     click.secho('Configuration settings updated', fg='green')
-
-

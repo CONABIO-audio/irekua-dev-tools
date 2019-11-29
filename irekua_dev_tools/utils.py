@@ -40,3 +40,21 @@ def load_config(path=None, aux_config=True):
     config.read(paths)
 
     return config
+
+
+def load_environment_variables(config):
+    db_config = config['db']
+    if 'IREKUA_DATABASE_HOST' not in os.environ:
+        os.environ['IREKUA_DATABASE_HOST'] = db_config.get('host')
+
+    if 'IREKUA_DATABASE_PORT' not in os.environ:
+        os.environ['IREKUA_DATABASE_PORT'] = db_config.get('port')
+
+    if 'IREKUA_DATABASE_NAME' not in os.environ:
+        os.environ['IREKUA_DATABASE_NAME'] = db_config.get('name')
+
+    if 'IREKUA_DATABASE_USER' not in os.environ:
+        os.environ['IREKUA_DATABASE_USER'] = db_config.get('user')
+
+    if 'IREKUA_DATABASE_PASSWORD' not in os.environ:
+        os.environ['IREKUA_DATABASE_PASSWORD'] = db_config.get('password')

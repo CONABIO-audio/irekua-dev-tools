@@ -10,6 +10,7 @@ from .venvs import has_venv
 from .venvs import run_python
 from .venvs import run_pip
 from .venvs import get_venv_path
+from .venvs import remove_venv
 
 
 def is_installed(target, name, venvs_dir=None):
@@ -37,7 +38,10 @@ def is_installed(target, name, venvs_dir=None):
     return True
 
 
-def install_app(target, name, venvs_dir=None):
+def install_app(target, name, venvs_dir=None, reinstall=False):
+    if reinstall:
+        remove_venv(target, name, venvs_dir=venvs_dir)
+
     if not has_venv(target, name, venvs_dir=venvs_dir):
         create_venv(target, name, venvs_dir=venvs_dir)
 
@@ -49,8 +53,14 @@ def install_app(target, name, venvs_dir=None):
     update_app(target, name, venvs_dir=venvs_dir)
 
 
-def update_app(target, name, venvs_dir=None):
-    install_dependency(target, name, name, venvs_dir=venvs_dir)
+def update_app(target, name, venvs_dir=None, stdout=True, stderr=True):
+    install_dependency(
+        target,
+        name,
+        name,
+        venvs_dir=venvs_dir,
+        stdout=stdout,
+        stderr=stderr)
     create_requirements(target, name, venvs_dir=venvs_dir)
 
 
@@ -105,3 +115,15 @@ def run_django_server(target, name, venvs_dir=None, port=8000):
         args=[target, name, arguments, venvs_dir])
     django_server_thread.start()
     return django_server_thread
+
+
+def run_app_shell(target, name, venvs_dir=None):
+    module_name = os.path.join(target, name, 'manage.py')
+
+    if not os.path.exists(module_name):
+        message = 'App {} is not a django app'.format(name)
+        click.secho(message, fg='red')
+        return
+
+    arguments = [module_name, 'shell']
+    run_python(target, name, arguments, venvs_dir=venvs_dir)

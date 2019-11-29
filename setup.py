@@ -24,6 +24,7 @@ setup(
         'pygments',
         'virtualenv',
         'watchdog',
+        'psycopg2_binary',
     ],
     entry_points='''
         [console_scripts]

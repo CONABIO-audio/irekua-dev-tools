@@ -1,4 +1,5 @@
 import os
+import shutil
 import subprocess
 
 import click
@@ -28,6 +29,12 @@ def create_venv(target, name, python='python3', venvs_dir=None, verbose=True):
     if verbose:
         message = '[+] Virtual environment for {} created'.format(name)
         click.secho(message, fg='green')
+
+
+def remove_venv(target, name, venvs_dir=None):
+    path = get_venv_path(target, name, venvs_dir=venvs_dir)
+    if os.path.exists(path):
+        shutil.rmtree(path)
 
 
 def run_python(

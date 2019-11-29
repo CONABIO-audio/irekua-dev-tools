@@ -3,10 +3,12 @@ import click
 from irekua_dev_tools.utils import load_config
 from irekua_dev_tools.utils import clear_target_directory
 from irekua_dev_tools.utils import get_working_directory
+from irekua_dev_tools.utils import load_environment_variables
 
 from . import git
 from . import dev
 from . import config
+from . import db
 
 
 @click.group()
@@ -16,6 +18,7 @@ from . import config
 @click.option('--default-config', '-dc', 'default_config', is_flag=True)
 def cli(ctx, config_file, target, default_config):
     config = load_config(path=config_file, aux_config=not default_config)
+    load_environment_variables(config)
 
     ctx.ensure_object(dict)
     ctx.obj['config'] = config
@@ -32,6 +35,8 @@ def clean(ctx, silent):
     target = ctx.obj['target']
     clear_target_directory(target, silent=silent)
 
+
 cli.add_command(dev.cli)
 cli.add_command(git.cli)
 cli.add_command(config.cli)
+cli.add_command(db.cli)

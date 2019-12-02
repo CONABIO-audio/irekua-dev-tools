@@ -10,7 +10,6 @@ from . import config
 from . import db
 
 from .extra import clean
-from .extra import manage
 
 
 @click.group()
@@ -35,4 +34,3 @@ cli.add_command(git.cli)
 cli.add_command(config.cli)
 cli.add_command(db.cli)
 cli.add_command(clean)
-cli.add_command(manage)

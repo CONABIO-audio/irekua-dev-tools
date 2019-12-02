@@ -1,4 +1,5 @@
 import os
+import json
 import shutil
 import configparser
 
@@ -8,6 +9,7 @@ from irekua_dev_tools.repositories import REPOSITORY_INFO
 
 
 BASE_PATH = os.path.join(BASE_DIR, 'settings.ini')
+BASE_DEPENDENCY_FILE = os.path.join(BASE_DIR, 'repositories.json')
 
 
 def clear_target_directory(target, silent=False):
@@ -19,6 +21,13 @@ def clear_target_directory(target, silent=False):
                 'Directory for {} succesfully removed ({})'.format(
                     name, dir_path))
             click.secho(message, fg='green')
+
+
+def load_repository_info(config):
+    dependency_file = config['irekua'].get('dependency_file', BASE_DEPENDENCY_FILE)
+    with open(dependency_file, 'r') as json_file:
+        repository_info = json.load(json_file)
+    return repository_info
 
 
 def get_working_directory(config):

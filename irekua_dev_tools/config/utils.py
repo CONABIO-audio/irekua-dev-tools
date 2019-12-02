@@ -33,7 +33,6 @@ def backup_config():
         click.secho('Config file backup created', fg='cyan')
 
 
-
 def restore_config():
     backup_path = os.path.join(BASE_DIR, 'settings.bkp.ini')
     original_path = os.path.join(BASE_DIR, 'settings.ini')
@@ -49,6 +48,7 @@ def restore_config():
 def update_config(
         working_directory=None,
         config_file=None,
+        dependency_file=None,
         origin=None,
         branch=None,
         db_user=None,
@@ -64,6 +64,9 @@ def update_config(
 
     if config_file:
         config['irekua']['config_file'] = config_file
+
+    if dependency_file:
+        config['irekua']['dependency_file'] = dependency_file
 
     if origin:
         config['git']['origin'] = origin

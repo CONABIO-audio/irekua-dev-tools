@@ -117,7 +117,7 @@ def start(ctx, name, install, update, port):
     django_thread.join()
 
 
-@click.command()
+@cli.command()
 @click.pass_context
 @click.argument('name', type=click.Choice(REPOSITORY_INFO.keys()))
 @click.argument('command', nargs=1)

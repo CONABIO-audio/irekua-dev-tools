@@ -26,6 +26,7 @@ def restore():
 @click.option('--origin', '-o')
 @click.option('--branch', '-b')
 @click.option('--working-directory', '-w', 'working_directory')
+@click.option('--dependency-file', '-df', 'dependency_file')
 @click.option('--config-file', '-c', 'config_file')
 @click.option('--db-host', '-dh', 'db_host')
 @click.option('--db-name', '-dn', 'db_name')
@@ -36,6 +37,7 @@ def set_config(
         origin,
         branch,
         working_directory,
+        dependency_file,
         config_file,
         db_host,
         db_name,
@@ -46,6 +48,7 @@ def set_config(
     update_config(
         working_directory=working_directory,
         config_file=config_file,
+        dependency_file=dependency_file,
         origin=origin,
         branch=branch,
         db_host=db_host,

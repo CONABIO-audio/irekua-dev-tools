@@ -56,9 +56,7 @@ def run_python(
             stderr=stderr,
             stdout=stdout)
 
-    return subprocess.run(
-        [python_bin_path, *arguments],
-        capture_output=capture).stdout
+    return subprocess.check_output([python_bin_path, *arguments])
 
 
 def run_pip(
@@ -80,9 +78,7 @@ def run_pip(
             stdout=stdout,
             stderr=stderr)
 
-    return subprocess.run(
-        [pip_bin_path, *arguments],
-        capture_output=capture).stdout
+    return subprocess.run([pip_bin_path, *arguments])
 
 
 def install_packages(

@@ -89,3 +89,4 @@ local_settings.py
 db.sqlite3
 
 test/
+.irekua.config.ini

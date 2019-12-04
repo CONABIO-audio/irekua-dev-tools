@@ -69,12 +69,13 @@ def has_pending_migrations(name, target, venvs_dir=None):
             target,
             name,
             'migrate',
-            [app_name, '--plan', '--fake'],
+            ['--plan', '--fake'],
             venvs_dir=venvs_dir,
             stdout=False,
             stderr=False)
 
         if output.returncode != 0:
+            print(output.stdout)
             raise RuntimeError
 
         stdout = output.stdout.decode('utf-8')

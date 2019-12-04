@@ -64,6 +64,7 @@
         "dependencies": [
             "irekua-dev-settings",
             "irekua-database",
+            "irekua-autocomplete",
             "irekua-rest-api",
             "selia-forms",
             "selia-templates",

@@ -25,6 +25,7 @@ def restore():
 @cli.command(name='set')
 @click.option('--origin', '-o')
 @click.option('--branch', '-b')
+@click.option('--git-method', '-gm', 'git_method')
 @click.option('--working-directory', '-w', 'working_directory')
 @click.option('--config-file', '-c', 'config_file')
 @click.option('--db-host', '-dh', 'db_host')
@@ -32,24 +33,32 @@ def restore():
 @click.option('--db-user', '-du', 'db_user')
 @click.option('--db-port', '-dp', 'db_port')
 @click.option('--db-password', '-dk', 'db_password')
+@click.option('--repository-file', '-rf', 'repository_file')
+@click.option('--repository-method', '-rm', 'repository_method')
 def set_config(
         origin,
         branch,
+        git_method,
         working_directory,
         config_file,
         db_host,
         db_name,
         db_user,
         db_port,
-        db_password):
+        db_password,
+        repository_file,
+        repository_method):
     backup_config()
     update_config(
         working_directory=working_directory,
         config_file=config_file,
         origin=origin,
         branch=branch,
+        git_method=git_method,
         db_host=db_host,
         db_name=db_name,
         db_user=db_user,
         db_port=db_port,
-        db_password=db_password)
+        db_password=db_password,
+        repository_file=repository_file,
+        repository_method=repository_method)

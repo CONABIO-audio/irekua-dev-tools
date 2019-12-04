@@ -1,9 +1,8 @@
 import glob
 import os
+import subprocess
 import threading
 import click
-
-from irekua_dev_tools.repositories import REPOSITORY_INFO
 
 from .venvs import create_venv
 from .venvs import has_venv
@@ -13,7 +12,7 @@ from .venvs import get_venv_path
 from .venvs import remove_venv
 
 
-def is_installed(target, name, venvs_dir=None):
+def is_installed(target, name, dependencies, venvs_dir=None):
     venv_path = get_venv_path(target, name, venvs_dir=venvs_dir)
 
     if not os.path.exists(venv_path):
@@ -30,7 +29,6 @@ def is_installed(target, name, venvs_dir=None):
         os.path.basename(package).split('-')[0]
         for package in glob.glob(packages_glob)
     ]
-    dependencies = REPOSITORY_INFO[name]['dependencies']
     for dependency in dependencies:
         if not dependency.replace('-', '_') in packages_files:
             return False
@@ -38,7 +36,7 @@ def is_installed(target, name, venvs_dir=None):
     return True
 
 
-def install_app(target, name, venvs_dir=None, reinstall=False):
+def install_app(target, name, dependencies, venvs_dir=None, reinstall=False):
     if reinstall:
         remove_venv(target, name, venvs_dir=venvs_dir)
 
@@ -46,7 +44,6 @@ def install_app(target, name, venvs_dir=None, reinstall=False):
         create_venv(target, name, venvs_dir=venvs_dir)
 
     click.secho('Installing app {}'.format(name), fg='cyan')
-    dependencies = REPOSITORY_INFO[name]['dependencies']
     for dependency in dependencies:
         install_dependency(target, name, dependency, venvs_dir=venvs_dir)
 
@@ -92,7 +89,7 @@ def create_requirements(target, name, venvs_dir=None):
     arguments = ['freeze']
     output = run_pip(target, name, arguments, venvs_dir=venvs_dir, capture=True)
 
-    requirements = output.decode("utf-8").split('\n')
+    requirements = output.decode('utf-8').split('\n')
     file_path = os.path.join(target, name, 'requirements.txt')
     with open(file_path, 'w') as rfile:
         for requirement in requirements:
@@ -128,7 +125,14 @@ def run_app_shell(target, name, venvs_dir=None):
     run_python(target, name, arguments, venvs_dir=venvs_dir)
 
 
-def run_manage(target, name, command, extra, venvs_dir=None):
+def run_manage(
+        target,
+        name,
+        command,
+        extra,
+        venvs_dir=None,
+        stderr=True,
+        stdout=True):
     module_name = os.path.join(target, name, 'manage.py')
 
     if not os.path.exists(module_name):
@@ -138,5 +142,15 @@ def run_manage(target, name, command, extra, venvs_dir=None):
 
     arguments = [module_name, command]
     if extra:
-        arguments.append(extra)
-    run_python(target, name, arguments, venvs_dir=venvs_dir)
+        if isinstance(extra, (tuple, list)):
+            arguments += list(extra)
+        else:
+            arguments.append(extra)
+
+    return run_python(
+        target,
+        name,
+        arguments,
+        venvs_dir=venvs_dir,
+        stderr=stderr,
+        stdout=stderr)

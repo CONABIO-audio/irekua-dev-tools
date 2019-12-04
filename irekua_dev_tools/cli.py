@@ -20,7 +20,9 @@ from .extra import clean
 @click.option('--default-config', '-dc', 'default_config', is_flag=True)
 def cli(ctx, config_file, target, default_config):
     config = load_config(path=config_file, aux_config=not default_config)
-    repository_info = load_repository_info(config)
+    repository_info = load_repository_info(
+        method=config['repositories']['method'],
+        repository_file=config['repositories']['repository_file'])
     load_environment_variables(config)
 
     ctx.ensure_object(dict)

@@ -3,6 +3,7 @@ import click
 from .utils import check_database
 from .utils import setup_database
 from .utils import delete_database
+from .migrations import migrate_database
 
 
 @click.group(name="db")
@@ -12,7 +13,8 @@ from .utils import delete_database
 @click.option('--port', '-p')
 @click.option('--password', '-k')
 @click.option('--name', '-n')
-def cli(ctx, user, host, port, password, name):
+@click.option('--venvs-dir', '-vd', 'venvs_dir')
+def cli(ctx, user, host, port, password, name, venvs_dir):
     """Commands for database configuration"""
     config = ctx.obj['config']
     if user is None:
@@ -25,6 +27,7 @@ def cli(ctx, user, host, port, password, name):
         password = config['db']['password']
     if name is None:
         name = config['db']['name']
+    ctx.obj['venvs_dir'] = config['dev'].get('venvs_dir', venvs_dir)
 
     ctx.obj['db_config'] = {
         'user': user,
@@ -38,17 +41,32 @@ def cli(ctx, user, host, port, password, name):
 @cli.command()
 @click.pass_context
 def check(ctx):
-    check_database(ctx.obj['db_config'])
+    config = ctx.obj['db_config']
+    repository_info = ctx.obj['repository_info']
+    target = ctx.obj['target']
+    venvs_dir = ctx.obj['venvs_dir']
+
+    check_database(config, repository_info, target, venvs_dir=venvs_dir)
 
 
 @cli.command()
 @click.pass_context
 @click.option('--force', '-f', is_flag=True)
 def setup(ctx, force):
+    config = ctx.obj['db_config']
+    venvs_dir = ctx.obj['venvs_dir']
+    repository_info = ctx.obj['repository_info']
+    target = ctx.obj['target']
+
     if force:
         click.confirm('Are you sure you want to reset the database?', abort=True)
 
-    setup_database(ctx.obj['db_config'], force=force)
+    setup_database(
+        config,
+        repository_info,
+        target,
+        venvs_dir=venvs_dir,
+        force=force)
 
 
 @cli.command()
@@ -56,3 +74,14 @@ def setup(ctx, force):
 def delete(ctx):
     if click.confirm('Are you sure you want to delete the database?'):
         delete_database(ctx.obj['db_config'])
+
+
+
+@cli.command()
+@click.pass_context
+def migrate(ctx):
+    venvs_dir = ctx.obj['venvs_dir']
+    repository_info = ctx.obj['repository_info']
+    target = ctx.obj['target']
+
+    migrate_database(repository_info, target, venvs_dir=venvs_dir)

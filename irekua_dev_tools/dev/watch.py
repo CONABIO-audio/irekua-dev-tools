@@ -3,7 +3,6 @@ import os
 from watchdog.observers import Observer
 from watchdog.events import FileSystemEventHandler
 
-from irekua_dev_tools.repositories import REPOSITORY_INFO
 from .install import install_dependency
 
 
@@ -41,8 +40,7 @@ def observe_app(target, name, app, venvs_dir=None):
     return observer
 
 
-def observe_app_dependencies(target, name, venvs_dir=None):
-    dependencies = REPOSITORY_INFO[name]['dependencies']
+def observe_app_dependencies(target, name, dependencies, venvs_dir=None):
     return [
         observe_app(target, name, dependency, venvs_dir=venvs_dir)
         for dependency in dependencies]

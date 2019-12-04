@@ -3,8 +3,6 @@ import os
 import click
 import shutil
 
-from irekua_dev_tools.repositories import REPOSITORY_INFO
-
 
 def get_target_directory(name, target):
     working_directory = os.getcwd()
@@ -21,7 +19,7 @@ def is_git_repository(path):
     return os.path.exists(git_directory)
 
 
-def download_repository(name, target, force=False):
+def download_repository(name, target, repository_info, method='https', force=False):
     target_directory = get_target_directory(name, target)
 
     if is_git_repository(target_directory):
@@ -32,19 +30,32 @@ def download_repository(name, target, force=False):
 
         shutil.rmtree(target_directory)
 
-    source = REPOSITORY_INFO[name]['git']
+    if method == 'https':
+        source = repository_info[name]['git-https']
+    elif method == 'ssh':
+        source = repository_info[name]['git-ssh']
+    else:
+        raise ValueError('Invalid git method: {}'.format(method))
+
     subprocess.call(['git', 'clone', source, target_directory])
 
     message = 'Repository for {} succesfully downloaded'.format(name)
     click.secho(message, fg='green')
 
 
-def update_repository(name, target, branch='master', origin='origin', download=False):
+def update_repository(
+        name,
+        target,
+        repository_info,
+        branch='master',
+        origin='origin',
+        method='https',
+        download=False):
     target_directory = get_target_directory(name, target)
 
     if not is_git_repository(target_directory):
         if download:
-            download_repository(name, target, force=True)
+            download_repository(name, target, repository_info, method=method, force=True)
             return
 
         message = (

@@ -48,14 +48,16 @@ def restore_config():
 def update_config(
         working_directory=None,
         config_file=None,
-        dependency_file=None,
         origin=None,
         branch=None,
+        git_method=None,
         db_user=None,
         db_host=None,
         db_port=None,
         db_name=None,
-        db_password=None):
+        db_password=None,
+        repository_file=None,
+        repository_method=None):
 
     config = load_config(path=None, aux_config=False)
 
@@ -65,14 +67,14 @@ def update_config(
     if config_file:
         config['irekua']['config_file'] = config_file
 
-    if dependency_file:
-        config['irekua']['dependency_file'] = dependency_file
-
     if origin:
         config['git']['origin'] = origin
 
     if branch:
         config['git']['branch'] = branch
+
+    if git_method:
+        config['git']['method'] = git_method
 
     if db_user:
         config['db']['user'] = db_user
@@ -88,6 +90,12 @@ def update_config(
 
     if db_password:
         config['db']['password'] = db_password
+
+    if repository_file:
+        config['repositories']['repository_file'] = repository_file
+
+    if repository_method:
+        config['repositories']['method'] = repository_method
 
     path = os.path.join(BASE_DIR, 'settings.ini')
     with open(path, 'w') as config_file:

@@ -48,9 +48,16 @@ def run_python(
     venv_path = get_venv_path(target, name, venvs_dir=venvs_dir)
     python_bin_path = os.path.join(venv_path, 'bin', 'python')
 
+    if not os.path.exists(python_bin_path):
+        message = (
+            'App {name} not installed. Please run:  irekua dev install'
+            ' {name}'.format(name=name))
+        raise click.ClickException(message)
+
     if not capture:
         stdout = None if stdout else subprocess.PIPE
         stderr = None if stderr else subprocess.STDOUT
+
         return subprocess.run(
             [python_bin_path, *arguments],
             stderr=stderr,
@@ -78,7 +85,9 @@ def run_pip(
             stdout=stdout,
             stderr=stderr)
 
-    return subprocess.run([pip_bin_path, *arguments])
+    return subprocess.run(
+        [pip_bin_path, *arguments],
+        stdout=subprocess.PIPE).stdout
 
 
 def install_packages(

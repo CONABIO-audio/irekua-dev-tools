@@ -1,15 +1,18 @@
 {
     "selia-visualizers": {
         "url": "https://github.com/CONABIO-audio/selia-visualizers",
-        "git": "git@github.com:CONABIO-audio/selia-visualizers.git",
+        "git-ssh": "git@github.com:CONABIO-audio/selia-visualizers.git",
+        "git-https": "https://github.com/CONABIO-audio/selia-visualizers.git",
         "dependencies": [
             "irekua-dev-settings",
             "irekua-database"
-        ]
+        ],
+        "has_migrations": true
     },
     "selia-uploader": {
         "url": "https://github.com/CONABIO-audio/selia-uploader",
-        "git": "git@github.com:CONABIO-audio/selia-uploader.git",
+        "git-https": "https://github.com/CONABIO-audio/selia-uploader.git",
+        "git-ssh": "git@github.com:CONABIO-audio/selia-uploader.git",
         "dependencies": [
             "irekua-dev-settings",
             "irekua-database",
@@ -21,22 +24,26 @@
     },
     "selia-thumbnails": {
         "url": "https://github.com/CONABIO-audio/selia-thumbnails",
-        "git": "git@github.com:CONABIO-audio/selia-thumbnails.git",
+        "git-https": "https://github.com/CONABIO-audio/selia-thumbnails.git",
+        "git-ssh": "git@github.com:CONABIO-audio/selia-thumbnails.git",
         "dependencies": [
             "irekua-dev-settings",
             "irekua-database"
-        ]
+        ],
+        "has_migrations": true
     },
     "selia-templates": {
         "url": "https://github.com/CONABIO-audio/selia-templates",
-        "git": "git@github.com:CONABIO-audio/selia-templates.git",
+        "git-https": "https://github.com/CONABIO-audio/selia-templates.git",
+        "git-ssh": "git@github.com:CONABIO-audio/selia-templates.git",
         "dependencies": [
             "selia-forms"
         ]
     },
     "selia-registration": {
         "url": "https://github.com/CONABIO-audio/selia-registration",
-        "git": "git@github.com:CONABIO-audio/selia-registration.git",
+        "git-https": "https://github.com/CONABIO-audio/selia-registration.git",
+        "git-ssh": "git@github.com:CONABIO-audio/selia-registration.git",
         "dependencies": [
             "irekua-dev-settings",
             "irekua-database",
@@ -46,12 +53,14 @@
     },
     "selia-forms": {
         "url": "https://github.com/CONABIO-audio/selia-forms",
-        "git": "git@github.com:CONABIO-audio/selia-forms.git",
+        "git-https": "https://github.com/CONABIO-audio/selia-forms.git",
+        "git-ssh": "git@github.com:CONABIO-audio/selia-forms.git",
         "dependencies": []
     },
     "selia-annotator": {
         "url": "https://github.com/CONABIO-audio/selia-annotator",
-        "git": "git@github.com:CONABIO-audio/selia-annotator.git",
+        "git-https": "https://github.com/CONABIO-audio/selia-annotator.git",
+        "git-ssh": "git@github.com:CONABIO-audio/selia-annotator.git",
         "dependencies": [
             "irekua-dev-settings",
             "irekua-database",
@@ -59,11 +68,13 @@
             "selia-forms",
             "selia-templates",
             "selia-visualizers"
-        ]
+        ],
+        "has_migrations": true
     },
     "selia-admin": {
         "url": "https://github.com/CONABIO-audio/selia-admin",
-        "git": "git@github.com:CONABIO-audio/selia-admin.git",
+        "git-https": "https://github.com/CONABIO-audio/selia-admin.git",
+        "git-ssh": "git@github.com:CONABIO-audio/selia-admin.git",
         "dependencies": [
             "irekua-dev-settings",
             "irekua-database",
@@ -73,7 +84,8 @@
     },
     "selia-about": {
         "url": "https://github.com/CONABIO-audio/selia-about",
-        "git": "git@github.com:CONABIO-audio/selia-about.git",
+        "git-https": "https://github.com/CONABIO-audio/selia-about.git",
+        "git-ssh": "git@github.com:CONABIO-audio/selia-about.git",
         "dependencies": [
             "irekua-dev-settings",
             "selia-forms",
@@ -82,7 +94,8 @@
     },
     "selia": {
         "url": "https://github.com/CONABIO-audio/selia",
-        "git": "git@github.com:CONABIO-audio/selia.git",
+        "git-https": "https://github.com/CONABIO-audio/selia.git",
+        "git-ssh": "git@github.com:CONABIO-audio/selia.git",
         "dependencies": [
             "irekua-dev-settings",
             "irekua-database",
@@ -102,7 +115,8 @@
     },
     "irekua-rest-api": {
         "url": "https://github.com/CONABIO-audio/irekua-rest-api",
-        "git": "git@github.com:CONABIO-audio/irekua-rest-api.git",
+        "git-https": "https://github.com/CONABIO-audio/irekua-rest-api.git",
+        "git-ssh": "git@github.com:CONABIO-audio/irekua-rest-api.git",
         "dependencies": [
             "irekua-dev-settings",
             "irekua-database"
@@ -110,14 +124,17 @@
     },
     "irekua-database": {
         "url": "https://github.com/CONABIO-audio/irekua-database",
-        "git": "git@github.com:CONABIO-audio/irekua-database.git",
+        "git-https": "https://github.com/CONABIO-audio/irekua-database.git",
+        "git-ssh": "git@github.com:CONABIO-audio/irekua-database.git",
         "dependencies": [
             "irekua-dev-settings"
-        ]
+        ],
+        "has_migrations": true
     },
     "irekua-autocomplete": {
         "url": "https://github.com/CONABIO-audio/irekua-autocomplete",
-        "git": "git@github.com:CONABIO-audio/irekua-autocomplete.git",
+        "git-https": "https://github.com/CONABIO-audio/irekua-autocomplete.git",
+        "git-ssh": "git@github.com:CONABIO-audio/irekua-autocomplete.git",
         "dependencies": [
             "irekua-dev-settings",
             "irekua-database"
@@ -125,21 +142,24 @@
     },
     "irekua-permissions": {
         "url": "https://github.com/CONABIO-audio/irekua-permissions",
-        "git": "git@github.com:CONABIO-audio/irekua-permissions.git",
+        "git-https": "https://github.com/CONABIO-audio/irekua-permissions.git",
+        "git-ssh": "git@github.com:CONABIO-audio/irekua-permissions.git",
         "dependencies": [
             "irekua-database"
         ]
     },
     "irekua-filters": {
         "url": "https://github.com/CONABIO-audio/irekua-filters",
-        "git": "git@github.com:CONABIO-audio/irekua-filters.git",
+        "git-https": "https://github.com/CONABIO-audio/irekua-filters.git",
+        "git-ssh": "git@github.com:CONABIO-audio/irekua-filters.git",
         "dependencies": [
             "irekua-database"
         ]
     },
     "irekua-dev-settings": {
         "url": "https://github.com/CONABIO-audio/irekua-dev-settings",
-        "git": "git@github.com:CONABIO-audio/irekua-dev-settings.git",
+        "git-https": "https://github.com/CONABIO-audio/irekua-dev-settings.git",
+        "git-ssh": "git@github.com:CONABIO-audio/irekua-dev-settings.git",
         "dependencies": [
         ]
     }

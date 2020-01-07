@@ -74,7 +74,8 @@ def shell(ctx, name, install):
 
     check_app_name(name, repository_info)
 
-    if not is_installed(target, name, venvs_dir=venvs_dir):
+    dependencies = repository_info[name]['dependencies']
+    if not is_installed(target, name, dependencies, venvs_dir=venvs_dir):
         if not install:
             message = (
                 'App {name} is not installed. Please run:  irekua dev install '
@@ -101,7 +102,8 @@ def start(ctx, name, install, update, port):
 
     check_app_name(name, repository_info)
 
-    if not is_installed(target, name, venvs_dir=venvs_dir):
+    dependencies = repository_info[name]['dependencies']
+    if not is_installed(target, name, dependencies, venvs_dir=venvs_dir):
         if not install:
             message = (
                 'App {name} is not installed. Please run irekua dev install '

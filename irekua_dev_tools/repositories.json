@@ -22,6 +22,16 @@
             "selia-thumbnails"
         ]
     },
+    "selia-maps": {
+      "url": "https://github.com/CONABIO-audio/selia-maps",
+      "git-https": "https://github.com/CONABIO-audio/selia-maps.git",
+      "git-ssh": "git@github.com:CONABIO-audio/selia-maps.git",
+      "dependencies": [
+          "irekua-database",
+          "selia-forms",
+          "selia-templates",
+      ]
+    },
     "selia-thumbnails": {
         "url": "https://github.com/CONABIO-audio/selia-thumbnails",
         "git-https": "https://github.com/CONABIO-audio/selia-thumbnails.git",
@@ -111,7 +121,8 @@
             "selia-visualizers",
             "selia-annotator",
             "selia-thumbnails",
-            "selia-uploader"
+            "selia-uploader",
+            "selia-maps"
         ]
     },
     "irekua-rest-api": {

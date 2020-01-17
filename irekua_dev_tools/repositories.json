@@ -29,7 +29,7 @@
       "dependencies": [
           "irekua-database",
           "selia-forms",
-          "selia-templates",
+          "selia-templates"
       ]
     },
     "selia-thumbnails": {

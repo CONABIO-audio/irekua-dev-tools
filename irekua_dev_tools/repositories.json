@@ -17,7 +17,6 @@
             "irekua-dev-settings",
             "irekua-database",
             "irekua-rest-api",
-            "selia-forms",
             "selia-templates",
             "selia-thumbnails"
         ]
@@ -28,7 +27,6 @@
       "git-ssh": "git@github.com:CONABIO-audio/selia-maps.git",
       "dependencies": [
           "irekua-database",
-          "selia-forms",
           "selia-templates"
       ]
     },
@@ -47,7 +45,6 @@
         "git-https": "https://github.com/CONABIO-audio/selia-templates.git",
         "git-ssh": "git@github.com:CONABIO-audio/selia-templates.git",
         "dependencies": [
-            "selia-forms"
         ]
     },
     "selia-registration": {
@@ -57,15 +54,8 @@
         "dependencies": [
             "irekua-dev-settings",
             "irekua-database",
-            "selia-forms",
             "selia-templates"
         ]
-    },
-    "selia-forms": {
-        "url": "https://github.com/CONABIO-audio/selia-forms",
-        "git-https": "https://github.com/CONABIO-audio/selia-forms.git",
-        "git-ssh": "git@github.com:CONABIO-audio/selia-forms.git",
-        "dependencies": []
     },
     "selia-annotator": {
         "url": "https://github.com/CONABIO-audio/selia-annotator",
@@ -76,7 +66,6 @@
             "irekua-database",
             "irekua-autocomplete",
             "irekua-rest-api",
-            "selia-forms",
             "selia-templates",
             "selia-visualizers"
         ],
@@ -89,6 +78,7 @@
         "dependencies": [
             "irekua-dev-settings",
             "irekua-database",
+            "selia-templates",
             "selia-annotator",
             "selia-visualizers"
         ]
@@ -99,7 +89,6 @@
         "git-ssh": "git@github.com:CONABIO-audio/selia-about.git",
         "dependencies": [
             "irekua-dev-settings",
-            "selia-forms",
             "selia-templates"
         ]
     },
@@ -114,7 +103,6 @@
             "irekua-permissions",
             "irekua-rest-api",
             "irekua-autocomplete",
-            "selia-forms",
             "selia-templates",
             "selia-registration",
             "selia-about",

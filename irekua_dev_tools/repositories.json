@@ -132,7 +132,8 @@
         "git-ssh": "git@github.com:CONABIO-audio/irekua-rest-api.git",
         "dependencies": [
             "irekua-dev-settings",
-            "irekua-database"
+            "irekua-database",
+            "irekua-models"
         ]
     },
     "irekua-database": {

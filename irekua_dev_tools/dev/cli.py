@@ -9,6 +9,7 @@ from .install import is_installed
 from .install import run_django_server
 from .install import run_app_shell
 from .install import run_manage
+from .install import run_venv_python
 from .watch import observe_app_dependencies
 
 
@@ -62,6 +63,7 @@ def update(ctx, name, install):
 
     update_app(target, name, venvs_dir=venvs_dir)
     click.secho('App {} succesfully updated'.format(name), fg='green')
+
 
 @cli.command()
 @click.pass_context
@@ -137,11 +139,11 @@ def start(ctx, name, install, update, port):
     django_thread.join()
 
 
-@cli.command()
+@cli.command(context_settings={"ignore_unknown_options": True})
 @click.pass_context
 @click.argument('name', type=str)
 @click.argument('command', nargs=1)
-@click.argument('extra', nargs=1, required=False)
+@click.argument('extra', nargs=-1, required=False)
 def manage(ctx, name, command, extra):
     target = ctx.obj['target']
     venvs_dir = ctx.obj['venvs_dir']
@@ -150,3 +152,17 @@ def manage(ctx, name, command, extra):
     check_app_name(name, repository_info)
 
     run_manage(target, name, command, extra, venvs_dir=venvs_dir)
+
+
+@cli.command(context_settings={"ignore_unknown_options": True})
+@click.pass_context
+@click.argument('name', type=str)
+@click.argument('extra', nargs=-1, required=False)
+def python(ctx, name, extra):
+    target = ctx.obj['target']
+    venvs_dir = ctx.obj['venvs_dir']
+    repository_info = ctx.obj['repository_info']
+
+    check_app_name(name, repository_info)
+
+    run_venv_python(target, name, extra, venvs_dir=venvs_dir)

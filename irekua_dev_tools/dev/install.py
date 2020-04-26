@@ -1,6 +1,5 @@
 import glob
 import os
-import subprocess
 import threading
 import click
 
@@ -29,6 +28,7 @@ def is_installed(target, name, dependencies, venvs_dir=None):
         os.path.basename(package).split('-')[0]
         for package in glob.glob(packages_glob)
     ]
+
     for dependency in dependencies:
         if not dependency.replace('-', '_') in packages_files:
             return False
@@ -153,4 +153,21 @@ def run_manage(
         arguments,
         venvs_dir=venvs_dir,
         stderr=stderr,
-        stdout=stderr)
+        stdout=stdout)
+
+
+def run_venv_python(
+        target,
+        name,
+        extra,
+        venvs_dir=None,
+        stderr=True,
+        stdout=True):
+
+    return run_python(
+        target,
+        name,
+        list(extra),
+        venvs_dir=venvs_dir,
+        stderr=stderr,
+        stdout=stdout)

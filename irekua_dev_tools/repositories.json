@@ -93,7 +93,7 @@
         "dependencies": [
             "irekua-dev-settings",
             "irekua-database",
-            "selia-templates",
+            "irekua-models",
             "selia-annotator",
             "selia-visualizers"
         ]

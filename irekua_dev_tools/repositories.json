@@ -48,8 +48,8 @@
       "dependencies": [
           "irekua-dev-settings",
           "irekua-database",
-          "irekua-models",
-          "irekua-rest-api",
+          "irekua-permissions",
+          "irekua-filters",
           "selia-templates",
           "selia-registration"
       ]

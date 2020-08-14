@@ -126,6 +126,7 @@
             "selia-annotator",
             "selia-thumbnails",
             "selia-uploader",
+            "selia-managers",
             "selia-maps"
         ]
     },
@@ -136,6 +137,7 @@
         "dependencies": [
             "irekua-dev-settings",
             "irekua-database",
+            "irekua-filters",
             "irekua-models"
         ]
     },

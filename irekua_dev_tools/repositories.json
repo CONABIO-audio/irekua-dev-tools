@@ -200,5 +200,14 @@
         "irekua-database",
         "irekua-permissions"
       ]
+    },
+    "irekua-organisms": {
+      "url": "https://github.com/CONABIO-audio/irekua-organisms",
+      "git-https": "https://github.com/CONABIO-audio/irekua-organisms.git",
+      "git-ssh": "git@github.com:CONABIO-audio/irekua-organisms.git",
+      "dependencies": [
+        "irekua-dev-settings",
+        "irekua-database",
+      ]
     }
 }

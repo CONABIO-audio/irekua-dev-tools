@@ -207,7 +207,7 @@
       "git-ssh": "git@github.com:CONABIO-audio/irekua-organisms.git",
       "dependencies": [
         "irekua-dev-settings",
-        "irekua-database",
+        "irekua-database"
       ]
     }
 }

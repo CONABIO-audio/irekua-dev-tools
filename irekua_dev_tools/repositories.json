@@ -5,8 +5,6 @@
     "git-https": "https://github.com/CONABIO-audio/selia-visualizers.git",
     "dependencies": [
       "irekua-dev-settings",
-      "irekua-core",
-      "irekua-terms",
       "irekua-database",
       "irekua-permissions",
       "selia-templates"],
@@ -18,8 +16,6 @@
     "git-ssh": "git@github.com:CONABIO-audio/selia-uploader.git",
     "dependencies": [
       "irekua-dev-settings",
-      "irekua-core",
-      "irekua-terms",
       "irekua-database",
       "irekua-models",
       "irekua-rest-api",
@@ -32,8 +28,6 @@
     "git-https": "https://github.com/CONABIO-audio/selia-maps.git",
     "git-ssh": "git@github.com:CONABIO-audio/selia-maps.git",
     "dependencies": [
-      "irekua-core",
-      "irekua-terms",
       "irekua-database",
       "selia-templates"
     ]
@@ -42,7 +36,10 @@
     "url": "https://github.com/CONABIO-audio/selia-thumbnails",
     "git-https": "https://github.com/CONABIO-audio/selia-thumbnails.git",
     "git-ssh": "git@github.com:CONABIO-audio/selia-thumbnails.git",
-    "dependencies": ["irekua-dev-settings", "irekua-database"],
+    "dependencies": [
+      "irekua-dev-settings",
+      "irekua-database"
+    ],
     "has_migrations": true
   },
   "selia-managers": {
@@ -51,8 +48,6 @@
     "git-ssh": "git@github.com:CONABIO-audio/selia-managers.git",
     "dependencies": [
       "irekua-dev-settings",
-      "irekua-core",
-      "irekua-terms",
       "irekua-database",
       "irekua-permissions",
       "irekua-filters",
@@ -72,8 +67,6 @@
     "git-ssh": "git@github.com:CONABIO-audio/selia-registration.git",
     "dependencies": [
       "irekua-dev-settings",
-      "irekua-core",
-      "irekua-terms",
       "irekua-database",
       "selia-templates"
     ]
@@ -84,8 +77,6 @@
     "git-ssh": "git@github.com:CONABIO-audio/selia-annotator.git",
     "dependencies": [
       "irekua-dev-settings",
-      "irekua-core",
-      "irekua-terms",
       "irekua-database",
       "irekua-permissions",
       "irekua-autocomplete",
@@ -103,8 +94,6 @@
     "git-ssh": "git@github.com:CONABIO-audio/selia-admin.git",
     "dependencies": [
       "irekua-dev-settings",
-      "irekua-core",
-      "irekua-terms",
       "irekua-database",
       "irekua-models",
       "selia-annotator",
@@ -126,8 +115,6 @@
     "git-ssh": "git@github.com:CONABIO-audio/selia.git",
     "dependencies": [
       "irekua-dev-settings",
-      "irekua-core",
-      "irekua-terms",
       "irekua-database",
       "irekua-filters",
       "irekua-permissions",
@@ -151,8 +138,6 @@
     "git-ssh": "git@github.com:CONABIO-audio/irekua-rest-api.git",
     "dependencies": [
       "irekua-dev-settings",
-      "irekua-core",
-      "irekua-terms",
       "irekua-database",
       "irekua-filters",
       "irekua-models"
@@ -163,9 +148,7 @@
     "git-https": "https://github.com/CONABIO-audio/irekua-database.git",
     "git-ssh": "git@github.com:CONABIO-audio/irekua-database.git",
     "dependencies": [
-      "irekua-dev-settings",
-      "irekua-core",
-      "irekua-terms"
+      "irekua-dev-settings"
     ],
     "has_migrations": true
   },
@@ -175,8 +158,6 @@
     "git-ssh": "git@github.com:CONABIO-audio/irekua-autocomplete.git",
     "dependencies": [
       "irekua-dev-settings",
-      "irekua-core",
-      "irekua-terms",
       "irekua-database"
     ]
   },
@@ -186,8 +167,6 @@
     "git-ssh": "git@github.com:CONABIO-audio/irekua-permissions.git",
     "dependencies": [
       "irekua-dev-settings",
-      "irekua-core",
-      "irekua-terms",
       "irekua-database"
     ]
   },
@@ -197,8 +176,6 @@
     "git-ssh": "git@github.com:CONABIO-audio/irekua-filters.git",
     "dependencies": [
       "irekua-dev-settings",
-      "irekua-core",
-      "irekua-terms",
       "irekua-database"
     ]
   },
@@ -214,8 +191,6 @@
     "git-ssh": "git@github.com:CONABIO-audio/irekua-models.git",
     "dependencies": [
       "irekua-dev-settings",
-      "irekua-core",
-      "irekua-terms",
       "irekua-database",
       "irekua-permissions",
       "irekua-rest-api"
@@ -227,8 +202,6 @@
     "git-ssh": "git@github.com:CONABIO-audio/irekua-summaries.git",
     "dependencies": [
       "irekua-dev-settings",
-      "irekua-core",
-      "irekua-terms",
       "irekua-database",
       "irekua-permissions"
     ]
@@ -239,26 +212,7 @@
     "git-ssh": "git@github.com:CONABIO-audio/irekua-organisms.git",
     "dependencies": [
       "irekua-dev-settings",
-      "irekua-core",
-      "irekua-terms",
       "irekua-database"
-    ]
-  },
-  "irekua-core": {
-    "url": "https://github.com/CONABIO-audio/irekua-core",
-    "git-https": "https://github.com/CONABIO-audio/irekua-core.git",
-    "git-ssh": "git@github.com:CONABIO-audio/irekua-core.git",
-    "dependencies": [
-      "irekua-dev-settings"
-    ]
-  },
-  "irekua-terms": {
-    "url": "https://github.com/CONABIO-audio/irekua-terms",
-    "git-https": "https://github.com/CONABIO-audio/irekua-terms.git",
-    "git-ssh": "git@github.com:CONABIO-audio/irekua-terms.git",
-    "dependencies": [
-      "irekua-dev-settings",
-      "irekua-core"
     ]
   }
 }
